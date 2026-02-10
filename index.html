@@ -6,11 +6,13 @@
   <title>¿Quieres ser mi San Valentín?</title>
   <style>
     :root{
-      --bg:#f7f5f2;
-      --ink:#2a2a2a;
-      --accent:#b07b57;
-      --card:#ffffff;
-      --line:#e5dfd7;
+      --sky:#bfe8ff;
+      --sky2:#d9f2ff;
+      --pink:#f7b6c8;
+      --pink2:#f3a7be;
+      --note:#ffffff;
+      --ink:#3a2f2f;
+      --accent:#d84f7a;
     }
     *{box-sizing:border-box}
     body{
@@ -18,110 +20,168 @@
       min-height:100vh;
       display:grid;
       place-items:center;
-      background:var(--bg);
+      font-family:"Georgia","Times New Roman",serif;
       color:var(--ink);
-      font-family: "Georgia", "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 10%, #ffffff60 0 10px, transparent 11px),
+        radial-gradient(circle at 80% 20%, #ffffff60 0 8px, transparent 9px),
+        radial-gradient(circle at 30% 40%, #ffffff60 0 9px, transparent 10px),
+        radial-gradient(circle at 70% 60%, #ffffff60 0 7px, transparent 8px),
+        radial-gradient(circle at 10% 70%, #ffffff60 0 9px, transparent 10px),
+        linear-gradient(180deg, var(--sky), var(--sky2));
     }
     .frame{
-      width:min(720px, 92vw);
-      padding:48px;
-      background:var(--card);
-      border:1px solid var(--line);
-      box-shadow:0 20px 50px rgba(0,0,0,0.06);
-      position:relative;
-      overflow:hidden;
-    }
-    .title{
-      font-size:28px;
-      letter-spacing:0.5px;
+      width:min(820px, 92vw);
+      padding:40px;
       text-align:center;
-      margin:0 0 30px 0;
+    }
+    h1{
+      margin:0 0 18px 0;
+      font-size:30px;
+      letter-spacing:.5px;
     }
     .envelope{
-      width:320px;
-      height:200px;
+      width:360px;
+      height:220px;
       margin:0 auto;
       position:relative;
-      border:1px solid var(--line);
-      background:#f0ebe4;
+      background:var(--pink);
+      border-radius:10px;
+      box-shadow:0 20px 40px rgba(0,0,0,.1);
       cursor:pointer;
-      transition:transform .25s ease;
     }
-    .envelope:hover{transform:translateY(-2px)}
     .flap{
       position:absolute;
       top:0; left:0;
       width:100%; height:100%;
-      background:linear-gradient(135deg, #e8ded3 50%, #f0ebe4 50%);
-      clip-path:polygon(0 0, 100% 0, 50% 55%);
-      border-bottom:1px solid var(--line);
+      background:linear-gradient(135deg, var(--pink2) 50%, var(--pink) 50%);
+      clip-path:polygon(0 0,100% 0,50% 55%);
     }
-    .letter{
+    .note{
       position:absolute;
-      bottom:10px; left:10px;
-      width:300px; height:160px;
-      background:#fff;
-      border:1px solid var(--line);
+      bottom:12px; left:12px;
+      width:336px; height:170px;
+      background:var(--note);
+      border-radius:10px;
+      box-shadow:inset 0 0 0 1px #f0e6e6;
+      padding:18px 20px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:16px;
-      font-size:18px;
+      font-size:20px;
       line-height:1.4;
-      transform:translateY(60px);
+      transform:translateY(70px);
       transition:transform .6s ease;
     }
-    .open .letter{transform:translateY(-30px)}
-    .message{
-      margin-top:30px;
-      text-align:center;
-      font-size:20px;
-      opacity:0;
-      transform:translateY(8px);
-      transition:opacity .5s ease, transform .5s ease;
+    .open .note{transform:translateY(-20px)}
+    .actions{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
     }
-    .open + .message{
-      opacity:1;
-      transform:translateY(0);
+    button{
+      border:none;
+      padding:12px 22px;
+      font-size:18px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease;
     }
-    .cta{
-      margin-top:16px;
-      text-align:center;
+    .yes{
+      background:var(--accent);
+      color:white;
+      box-shadow:0 10px 20px rgba(216,79,122,.3);
+    }
+    .no{
+      background:white;
+      color:#7a4d4d;
+      border:1px solid #f0c7d2;
+    }
+    button:hover{transform:translateY(-2px)}
+    .result{
+      margin-top:12px;
       font-size:22px;
       font-weight:bold;
-      color:var(--accent);
+      min-height:28px;
     }
-    .note{
-      margin-top:10px;
-      font-size:14px;
-      color:#6c6158;
-      text-align:center;
+
+    /* Corazones */
+    .heart{
+      position:fixed;
+      width:14px;
+      height:14px;
+      background:#ff5c8a;
+      transform:rotate(45deg);
+      animation:float 2.8s ease-in forwards;
+      opacity:.9;
+    }
+    .heart:before,.heart:after{
+      content:"";
+      position:absolute;
+      width:14px;
+      height:14px;
+      background:#ff5c8a;
+      border-radius:50%;
+    }
+    .heart:before{left:-7px}
+    .heart:after{top:-7px}
+
+    @keyframes float{
+      0%{transform:translateY(0) rotate(45deg); opacity:1}
+      100%{transform:translateY(-120px) rotate(45deg); opacity:0}
     }
   </style>
 </head>
 <body>
   <div class="frame">
-    <h1 class="title">Tengo algo para ti</h1>
+    <h1>¿Quieres ser mi San Valentín?</h1>
 
-    <div class="envelope" id="envelope" aria-label="Abrir carta">
+    <div class="envelope" id="envelope">
       <div class="flap"></div>
-      <div class="letter">
-        ¿Quieres ser mi San Valentín?
+      <div class="note">
+        Para ti ✨<br>
+        ¿Aceptas ser mi San Valentín?
       </div>
     </div>
 
-    <div class="message">
-      Prometo cuidarte, hacerte reír y llenar tus días de detalles bonitos.
-      <div class="cta">¿Aceptas? ❤️</div>
-      <div class="note">Toca el sobre para abrir la carta</div>
+    <div class="actions">
+      <button class="yes" id="yesBtn">Sí</button>
+      <button class="no" id="noBtn">No</button>
     </div>
+
+    <div class="result" id="result"></div>
   </div>
 
   <script>
     const envelope = document.getElementById("envelope");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const result = document.getElementById("result");
+
     envelope.addEventListener("click", () => {
       envelope.classList.toggle("open");
     });
+
+    yesBtn.addEventListener("click", () => {
+      result.textContent = "te adoro";
+      for(let i=0;i<18;i++){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.style.left = (50 + (Math.random()*40-20)) + "vw";
+        h.style.top = (60 + Math.random()*10) + "vh";
+        h.style.animationDelay = (Math.random()*0.4) + "s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(), 3000);
+      }
+    });
+
+    noBtn.addEventListener("click", () => {
+      result.textContent = "mmta";
+    });
   </script>
 </body>
+</html>
+
